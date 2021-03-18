@@ -14,6 +14,9 @@ public class RevisionPage extends RevisionElement {
         PageFactory.initElements(driver,this);
     }
 
+    /* Author SridharPadige
+    launchRevision method will be Launching the Revision page from Opportunity page
+     */
     public void LaunchRevision(){
         CommonUtil.waitFor(10);
         CommonUtil.waitForElementToBeAttachedToDOM(DownButton,driver,60);
@@ -22,6 +25,10 @@ public class RevisionPage extends RevisionElement {
         CommonUtil.waitForElementToBeAttachedToDOM(LaunchRevision,driver,10);
         LaunchRevision.click();
     }
+
+    /* Author SridharPadige
+    Addplusorders method will be dealing with switching between the tabs and Initiate Revise order
+     */
     public void Addplusorders(){
         CommonUtil.waitFor(15);
         ArrayList<String> tabs_windows = new ArrayList<String> (driver.getWindowHandles());
@@ -30,15 +37,27 @@ public class RevisionPage extends RevisionElement {
         CommonUtil.waitForElementToBeClickable(ReviseOrder,driver,60);
         ReviseOrder.click();
     }
+
+    /* Author SridharPadige
+    ClickYes method will be Perform Yes action in multiple location during confirmation
+     */
     public void ClickYes()
     {
         Yes.click();
     }
+
+    /* Author SridharPadige
+    BroadcastRevision method is used to select Broadcast for Revision
+     */
     public void BroadcastRevision(){
         CommonUtil.waitFor(30);
         CommonUtil.waitForElementToBeClickable(Broadcast,driver,60);
         Broadcast.click();
     }
+
+    /* Author SridharPadige
+    Revision method will be used to Select Station and adding Two weeks after
+     */
     public void Revision(){
         CommonUtil.waitFor(30);
         CommonUtil.waitForElementToBeClickable(FirstStation,driver,60);
@@ -47,11 +66,21 @@ public class RevisionPage extends RevisionElement {
         AddWeekAfter.click();
         AddWeekAfter.click();
     }
+
+    /* Author SridharPadige
+    SaveOnly method will be used to Perform Page Scroll
+     till end to click Save Only button for saving the revision changes
+     */
     public void SaveOnly(){
         JavascriptExecutor js = (JavascriptExecutor) driver;
         js.executeScript("window.scrollBy(0,1000)");
         SaveOnly.click();
     }
+
+    /* Author SridharPadige
+    ReturntoAdPlus method will be dealing with Returning back to add+ orders page
+    and complete the approval process
+     */
     public void ReturntoAdPlus(){
         CommonUtil.waitForElementToBeClickable(ReturntoAdplusorders,driver,60);
         ReturntoAdplusorders.click();

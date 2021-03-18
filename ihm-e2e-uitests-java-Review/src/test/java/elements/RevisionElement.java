@@ -4,6 +4,13 @@ import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.How;
 
+/* Author SridharPadige
+Created elements using css selectors & Xpaths for the Ad+plan
+This page contains elements for the Opportunity Revision
+these are applicable for Closed Opportunities for modification/Updation
+ */
+
+
 public class RevisionElement {
 
     @FindBy(how= How.XPATH,using = "//lightning-button-menu/button")
