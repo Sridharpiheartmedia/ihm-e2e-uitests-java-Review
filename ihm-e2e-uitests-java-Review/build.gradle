@@ -1,0 +1,67 @@
+plugins {
+    id 'java'
+}
+
+group 'org.example'
+version '1.0-SNAPSHOT'
+
+repositories {
+    mavenCentral()
+    jcenter()
+}
+
+configurations {
+    cucumberRuntime {
+        extendsFrom testImplementation
+    }
+}
+
+task cucumber() {
+    dependsOn assemble, compileTestJava
+    doLast {
+        javaexec {
+            main = "io.cucumber.core.cli.Main"
+            classpath = configurations.cucumberRuntime + sourceSets.main.output + sourceSets.test.output
+            args = ['--plugin', 'pretty', '--glue','','src/test/resources/features']
+        }
+    }
+}
+
+dependencies {
+    implementation group: 'org.seleniumhq.selenium', name: 'selenium-server', version: '3.141.59'
+    implementation group: 'org.seleniumhq.selenium', name: 'selenium-java', version: '3.141.59'
+    implementation group: 'io.cucumber', name: 'cucumber-java8', version: '6.10.1'
+    implementation group: 'io.cucumber', name: 'cucumber-java', version: '6.10.0'
+    implementation group: 'io.cucumber', name: 'cucumber-junit', version: '6.10.1'
+    implementation group: 'io.cucumber', name: 'cucumber-testng', version: '6.10.0'
+    implementation group: 'io.cucumber', name: 'cucumber-core', version: '2.0.0'
+    implementation group: 'org.seleniumhq.selenium', name: 'selenium-chrome-driver', version: '4.0.0-alpha-1'
+    implementation group:  'org.json' ,   name:'json', version: '20180813'
+    implementation group: 'com.googlecode.json-simple', name: 'json-simple', version: '1.1'
+
+}
+
+test {
+    systemProperty "cucumber.options", System.getProperty("cucumber.options")
+}
+
+
+task e2eTests(type: Test) {
+    include '**/TestRunner*'
+    systemProperty "cucumber.options", System.getProperty("cucumber.options")
+}
+
+tasks.withType(Test) {
+    dependsOn cleanTest
+    testLogging {
+        showStandardStreams = true
+    }
+    systemProperties System.properties
+}
+
+
+
+
+
+
+
